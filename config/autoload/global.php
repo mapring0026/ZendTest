@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Global Configuration Override
  *
@@ -10,7 +11,34 @@
  * control, so do not include passwords or other sensitive information in this
  * file.
  */
-
 return array(
-    // ...
+	'db' => array(
+		'driver' => 'Pdo',
+		'dsn' => 'mysql:dbname=khm;host=localhost',
+		'username' => 'root',
+		'password' => '',
+		'driver_options' => array(
+			PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+		),
+	),
+	'service_manager' => array(
+		'factories' => array(
+			'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+		),
+	),
+	'doctrine' => array(
+        'connection' => array(
+            // default connection name
+            'orm_default' => array(
+                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
+                'params' => array(
+                    'host'     => 'localhost',
+                    'port'     => '3306',
+                    'user'     => 'root',
+                    'password' => '',
+                    'dbname'   => 'khmer_jobs',
+                )
+            )
+        )
+    ),
 );
